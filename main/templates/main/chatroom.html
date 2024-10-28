@@ -1,1 +1,30 @@
 <h1>{{ chatroom.name }}</h1>
+
+<form method="post">
+    {% csrf_token %}
+    <input type="text" name="message" placeholder="Enter message">
+    <button type="submit">Send</button>
+</form>
+
+<script id="json-chatroomname" type="application/json">
+    {{ chatroom.slug|json_script }}
+</script>
+
+<script>
+    const chatRoomName = JSON.parse(document.getElementById('json-chatroomname').textContent);
+    const chatSocket = new WebSocket(
+        'ws://'
+        + window.location.host
+        + '/ws/'
+        + chatRoomName
+        + '/'
+    );
+    
+    chatSocket.onmessage = function(e) {
+        console.log('This is message');
+    }
+    
+    chatSocket.onclose = function(e) {
+        console.log('Socket closed');
+    }
+</script>
