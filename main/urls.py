@@ -2,6 +2,6 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-   path('', views.index, name="index"),
-   path('<slug:slug>', views.chatroom, name="chatroom"),
+   path('rooms/', views.index, name="index"),
+   path('rooms/<slug:slug>/', views.chatroom, name="chatroom"),
 ]
