@@ -10,7 +10,7 @@ def index(request):
 def chatroom(request, slug):
     chatroom = get_object_or_404(ChatRoom, slug=slug)
     return render(request, 'main/chatroom.html', {
-        'chatroom': chatroom,  # Pass the chatroom object
-        'slug': slug,          # Pass the slug directly
-        'main': {'slug': slug} # Pass the slug in the main dictionary
+        'chatroom': chatroom,
+        'slug': slug,
+        'main': {'slug': slug}
     })
